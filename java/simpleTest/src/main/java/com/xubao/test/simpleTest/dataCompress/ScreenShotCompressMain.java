@@ -16,12 +16,12 @@ public class ScreenShotCompressMain {
 		System.out.println("开始截取第一张");
 		BufferedImage screenShot1 = getScreenShot(new Rectangle(0, 0, 500, 500));
 		System.out.println("截取第一张结束");
-		saveScreenShot(screenShot1, "z:/ss1.jpg");
+		saveScreenShot(screenShot1, "z:/ss1.bmp");
 		Thread.sleep(10 * 1000);
 		System.out.println("开始截取第二张");
 		BufferedImage screenShot2 = getScreenShot(new Rectangle(0, 0, 500, 500));
 		System.out.println("截取第二张结束");
-		saveScreenShot(screenShot2, "z:/ss2.jpg");
+		saveScreenShot(screenShot2, "z:/ss2.bmp");
 
 		System.out.println("开始比较----------");
 

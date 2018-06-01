@@ -11,7 +11,7 @@ import net.coobird.thumbnailator.Thumbnails.Builder;
 
 public class PictureCompressMain {
 	public static void main(String[] args) throws IOException {
-		String src = "z://bb.jpg";
+		String src = "z://ss1.bmp";
 		compress(src,"",(float) 0.8);
 		compress(src,"",(float) 0.6);
 		compress(src,"",(float) 0.4);
@@ -31,11 +31,25 @@ public class PictureCompressMain {
 		try {
 			String before = src.substring(0, src.lastIndexOf('.'));
 			String after = src.substring(src.lastIndexOf('.'));
-			String fileName = before+compressRatio+after;
+			String fileName = before+compressRatio+".jpg";//after;
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			FileInputStream fis = new FileInputStream(src);
+			byte[] buf = new byte[2048];
+			int i = 0;
+			while(fis.read(buf)>-1){
+				//fis.read(buf);
+				baos.write(buf);
+				//System.out.println(i++);
+			}
+			fis.close();
+			System.out.println(baos.size());
+
 			long oldTime = System.currentTimeMillis();
-			Thumbnails.of(src) 
-			.scale(0.1f) 
-			.outputQuality(compressRatio) 
+			Thumbnails.of(new ByteArrayInputStream(baos.toByteArray()))
+			.scale(1f)
+			.outputQuality(compressRatio)
+			//		.toOutputStream(new ByteArrayOutputStream());
 			.toFile(fileName);
 			
 			long newTime = System.currentTimeMillis();
