@@ -21,15 +21,15 @@ public class ToolKitTest
 		System.out.println(0x00ff);
 		System.out.println(0xff00);
 		//System.out.println(-38<<);
-//		while(i<100000)
-//		{
-//			//获取鼠标位置
-//			//System.out.println(System.currentTimeMillis());
-//			Point point = java.awt.MouseInfo.getPointerInfo().getLocation();
-//			//System.out.println(System.currentTimeMillis());
-//			System.out.println(point.x+":"+point.y);
-//			Thread.sleep(100);
-//		}
+		while(i<100000)
+		{
+			//获取鼠标位置
+			//System.out.println(System.currentTimeMillis());
+			Point point = java.awt.MouseInfo.getPointerInfo().getLocation();
+			//System.out.println(System.currentTimeMillis());
+			System.out.println(point.x+":"+point.y);
+			Thread.sleep(100);
+		}
 
 	}
 }
