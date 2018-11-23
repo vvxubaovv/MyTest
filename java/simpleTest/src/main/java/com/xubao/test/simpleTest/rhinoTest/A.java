@@ -9,6 +9,7 @@ public class A
 {
 	private String a;
 	public String a1;
+	public static String SA = "3";
 	public A()
 	{
 	}
@@ -36,6 +37,16 @@ public class A
 	public void setA1(String a1)
 	{
 		this.a1 = a1;
+	}
+
+	public static String getSA()
+	{
+		return SA;
+	}
+
+	public static void setSA(String SA)
+	{
+		A.SA = SA;
 	}
 
 	@Override

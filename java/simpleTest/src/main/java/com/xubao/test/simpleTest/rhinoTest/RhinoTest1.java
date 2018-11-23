@@ -1,17 +1,17 @@
 package com.xubao.test.simpleTest.rhinoTest;
 
-import org.mozilla.javascript.*;
-import org.mozilla.javascript.tools.ToolErrorReporter;
-import org.mozilla.javascript.tools.shell.Environment;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.ContextFactory;
+import org.mozilla.javascript.Script;
+import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.tools.shell.Global;
 import org.mozilla.javascript.tools.shell.Main;
-import org.mozilla.javascript.tools.shell.QuitAction;
+import org.mozilla.javascript.tools.shell.ShellContextFactory;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 
 /**
  * @author xubao
@@ -22,41 +22,44 @@ public class RhinoTest1
 {
 	public static void main(String[] args) throws ScriptException
 	{
-		test4();
+		test6();
 	}
 
 	static void test1() throws ScriptException
 	{
 		ScriptEngineManager factory = new ScriptEngineManager();//step1
-		ScriptEngine engine =factory.getEngineByName("JavaScript");//Step2
+		ScriptEngine engine = factory.getEngineByName("JavaScript");//Step2
 		engine.eval("print('Hello, Scripting')");//Step3
 		//engine.eval("importPackage(java.io)");//Step3
 
 	}
 
-	static void test2(){
-		Context ctx=Context.enter();
-		Scriptable scope=ctx.initStandardObjects();
+	static void test2()
+	{
+		Context ctx = Context.enter();
+		Scriptable scope = ctx.initStandardObjects();
 
-		String jsStr="importPackage(java.io)";
+		String jsStr = "importPackage(java.io)";
 		Script script = ctx.compileString(jsStr, "<stdin>", 2, null);
 //		Object result=ctx.evaluateString(scope, jsStr, null, 0,null);
 		Object result = script.exec(ctx, scope);
-		System.out.println("result="+result);
+		System.out.println("result=" + result);
 	}
 
-	static void test3(){
-		Context ctx=Context.enter();
-		Scriptable scope=new Global();//ctx.initStandardObjects();
+	static void test3()
+	{
+		Context ctx = Context.enter();
+		Scriptable scope = new Global();//ctx.initStandardObjects();
 
-		String jsStr="print(1+2)";
+		String jsStr = "print(1+2)";
 		Script script = ctx.compileString(jsStr, null, 0, null);
 //		Object result=ctx.evaluateString(scope, jsStr, null, 0,null);
 		Object result = script.exec(ctx, scope);
-		System.out.println("result="+result);
+		System.out.println("result=" + result);
 	}
 
-	static void test4(){
+	static void test4()
+	{
 		String str = "importPackage(com.xubao.test.simpleTest.rhinoTest)\na=new A()\nprint('a='+a)\n";
 		ByteArrayInputStream bais = new ByteArrayInputStream(str.getBytes());
 
@@ -66,72 +69,53 @@ public class RhinoTest1
 
 	}
 
-	static void test5(){
-		ContextFactory factory = new ContextFactory();
-		Parser parser = new Parser();
-		Context ctx=factory.enterContext();
+	static void test5()
+	{
+		ContextFactory factory = new ShellContextFactory();
+		Context ctx = factory.enterContext();
 
-		Scriptable scope=new Environment();//ctx.initStandardObjects();
+		Global scope = new Global();//ctx.initStandardObjects();
+		scope.init(factory);
 
-		String jsStr="print(1+2)";
+		String jsStr = "importPackage(java.io)";
 		boolean b = ctx.stringIsCompilableUnit(jsStr);
-		System.out.println("b="+b);
+		System.out.println("b=" + b);
 
 		Script script = ctx.compileString(jsStr, "<stdin>", 0, null);
 //		Object result=ctx.evaluateString(scope, jsStr, null, 0,null);
 		Object result = script.exec(ctx, scope);
-		System.out.println("result="+result);
+		System.out.println("result=" + result);
 	}
 
-	private static class IProxy implements ContextAction, QuitAction
+	static void test6()
 	{
-		private static final int PROCESS_FILES = 1;
-		private static final int EVAL_INLINE_SCRIPT = 2;
-		private static final int SYSTEM_EXIT = 3;
+		ContextFactory factory = new ShellContextFactory();
+		Context ctx = factory.enterContext();
 
-		private int type;
-		String[] args;
-		String scriptText;
+		Global scope = new Global();
+		//看看
+		scope.init(factory);
 
-		IProxy(int type)
-		{
-			this.type = type;
-		}
-
-		public Object run(Context cx)
-		{
-
-				evalInlineScript(cx, scriptText);
-			return null;
-		}
-
-		public void quit(Context cx, int exitCode)
-		{
-			if (type == SYSTEM_EXIT) {
-				System.exit(exitCode);
-				return;
-			}
-			throw Kit.codeBug();
-		}
+		exec(ctx,scope,"importPackage(com.xubao.test.simpleTest.rhinoTest)");
+		exec(ctx,scope,"print('AS='+A.SA)");
+		A.SA = "kkkk";
+		exec(ctx,scope,"print('AS='+A.SA)");
+		exec(ctx,scope,"A.SA='jschange'");
+		System.out.println("j SA="+A.SA);
 	}
 
-	static void evalInlineScript(Context cx, String scriptText) {
-//		try {
-//			Script script = cx.compileString(scriptText, "<command>", 1, null);
-//			if (script != null) {
-//				script.exec(cx, getShellScope());
-//			}
-//		} catch (RhinoException rex) {
-//			ToolErrorReporter.reportException(
-//					cx.getErrorReporter(), rex);
-//			exitCode = EXITCODE_RUNTIME_ERROR;
-//		} catch (VirtualMachineError ex) {
-//			// Treat StackOverflow and OutOfMemory as runtime errors
-//			ex.printStackTrace();
-//			String msg = ToolErrorReporter.getMessage(
-//					"msg.uncaughtJSException", ex.toString());
-//			Context.reportError(msg);
-//			exitCode = EXITCODE_RUNTIME_ERROR;
-//		}
+	static void exec(Context ctx, Global scope, String jsStr)
+	{
+		boolean b = ctx.stringIsCompilableUnit(jsStr);
+		if(b)
+		{
+			Script script = ctx.compileString(jsStr, "<stdin>", 0, null);
+			Object result = script.exec(ctx, scope);
+			System.out.println("result=" + result);
+		}
+		else
+		{
+			System.out.println("不可编译");
+		}
 	}
 }
