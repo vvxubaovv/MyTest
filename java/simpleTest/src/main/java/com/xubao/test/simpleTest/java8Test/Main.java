@@ -9,7 +9,7 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		xx(A::x,2);//会被转化为函数接口对象
+		xx(A::x,2);//会被转化为函数接口对象,相当于自动用接口包装
 
 		xx(new A()::xxxx,4);//can work !!!!!
 	}

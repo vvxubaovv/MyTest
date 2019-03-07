@@ -75,3 +75,7 @@ public class A
 				'}';
 	}
 }
+
+class B{
+	public static final String SB = "sb";
+}

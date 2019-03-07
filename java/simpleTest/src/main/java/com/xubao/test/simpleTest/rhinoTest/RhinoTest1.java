@@ -97,9 +97,13 @@ public class RhinoTest1
 		scope.init(factory);
 
 		exec(ctx,scope,"importPackage(com.xubao.test.simpleTest.rhinoTest)");
+		exec(ctx,scope,"importPackage(com.xubao.test.simpleTest.rhinoTest)");
+		exec(ctx,scope,"importPackage(com.xubao.test.simpleTest.rhinoTest)");
 		exec(ctx,scope,"print('AS='+A.SA)");
 		A.SA = "kkkk";
+		System.out.println("Sb:"+B.SB);
 		exec(ctx,scope,"print('AS='+A.SA)");
+		//exec(ctx,scope,"print('SB='+B.SB)");//包可见的无法访问
 		exec(ctx,scope,"A.SA='jschange'");
 		System.out.println("j SA="+A.SA);
 	}

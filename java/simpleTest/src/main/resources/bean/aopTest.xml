@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+				http://www.springframework.org/schema/aop
+				http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<context:annotation-config/>
+
+	<context:component-scan base-package="com.xubao.test.simpleTest.springTest.aopTest"/>
+
+	<bean id="time" class="com.xubao.test.simpleTest.springTest.aopTest.Time"/>
+	<bean id="a" class="com.xubao.test.simpleTest.springTest.aopTest.A"/>
+	<bean id="b" class="com.xubao.test.simpleTest.springTest.aopTest.A$B"/>
+
+	<aop:config>
+		<aop:aspect id="x1" ref="time">
+			<aop:pointcut id="p1" expression="execution(* com.xubao.test.simpleTest.springTest.aopTest.*.*())"/>
+			<aop:after method="printTime" pointcut-ref="p1"/>
+			<aop:before method="printTime" pointcut-ref="p1"></aop:before>
+		</aop:aspect>
+	</aop:config>
+
+</beans>
