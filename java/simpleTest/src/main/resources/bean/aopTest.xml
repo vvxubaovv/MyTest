@@ -9,19 +9,93 @@
 				http://www.springframework.org/schema/aop
 				http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	<context:annotation-config/>
-
 	<context:component-scan base-package="com.xubao.test.simpleTest.springTest.aopTest"/>
-
 	<bean id="time" class="com.xubao.test.simpleTest.springTest.aopTest.Time"/>
 	<bean id="a" class="com.xubao.test.simpleTest.springTest.aopTest.A"/>
 	<bean id="b" class="com.xubao.test.simpleTest.springTest.aopTest.A$B"/>
 
-	<aop:config>
+	<!--<aop:config>
+		&lt;!&ndash;<aop:aspect id="x1" ref="time">&ndash;&gt;
+		&lt;!&ndash;<aop:pointcut id="p1" expression="execution(* com.xubao.test.simpleTest.springTest.aopTest.*.*())"/>&ndash;&gt;
+		&lt;!&ndash;<aop:after method="printTime" pointcut-ref="p1"/>&ndash;&gt;
+		&lt;!&ndash;<aop:before method="printTime" pointcut-ref="p1"/>&ndash;&gt;
+		&lt;!&ndash;</aop:aspect>&ndash;&gt;
+
+		&lt;!&ndash;<aop:aspect id="x1" ref="time">&ndash;&gt;
+		&lt;!&ndash;<aop:pointcut id="p1" expression="execution(* com.xubao.test.simpleTest.springTest.aopTest.A$B.*())"/>&ndash;&gt;
+		&lt;!&ndash;<aop:after method="printTime" pointcut-ref="p1"/>&ndash;&gt;
+		&lt;!&ndash;<aop:before method="printTime" pointcut-ref="p1"/>&ndash;&gt;
+		&lt;!&ndash;</aop:aspect>&ndash;&gt;
+
+
+		&lt;!&ndash;匹配不到aopTest.A$B方法中的调用
+			匹配不到A.printA2()静态方法调用,貌似是SpringAOP不支持对静态方法进行代理,AspectJ OK
+		&ndash;&gt;
 		<aop:aspect id="x1" ref="time">
 			<aop:pointcut id="p1" expression="execution(* com.xubao.test.simpleTest.springTest.aopTest.*.*())"/>
-			<aop:after method="printTime" pointcut-ref="p1"/>
-			<aop:before method="printTime" pointcut-ref="p1"></aop:before>
+			<aop:around method="arroundPrintTime" pointcut-ref="p1"/>
+		</aop:aspect>
+
+		&lt;!&ndash;能匹配A$B&ndash;&gt;
+		<aop:aspect id="x2" ref="time">
+			<aop:pointcut id="p2" expression="execution(* com.xubao.test.simpleTest.springTest.aopTest.A$B.*())"/>
+			<aop:around method="arroundPrintTime" pointcut-ref="p2"/>
+		</aop:aspect>
+
+		&lt;!&ndash;能匹配以Tag注解的方法
+			还是不能匹配A.printA2()静态方法调用
+		&ndash;&gt;
+		<aop:aspect id="x3" ref="time">
+			<aop:pointcut id="p3" expression="@annotation(com.xubao.test.simpleTest.springTest.aopTest.Tag)"/>
+			<aop:before method="withTag" pointcut-ref="p3"/>
+		</aop:aspect>
+		&lt;!&ndash;同一个方法的多个增强 可以理解为一层包一层 按定义顺序 后来居""内""&ndash;&gt;
+
+		&lt;!&ndash;
+		args 匹配 与增强方法形参一致的方法(貌似不要求顺序)
+		@args 匹配 被某个注解标记的形参,填注解类
+		&ndash;&gt;
+		<aop:aspect id="x4" ref="time">
+			&lt;!&ndash;匹配一个参数的方法  默认匹配的方法形参类型与withTagCount形参类型一致(可能会与其他形参类型限定条件冲突导致匹配不上!!)&ndash;&gt;
+			<aop:pointcut id="p4"
+			              expression="@annotation(com.xubao.test.simpleTest.springTest.aopTest.Tag) and args(count)"/>
+			<aop:before method="withTagCount" pointcut-ref="p4"/>
+		</aop:aspect>
+
+		<aop:aspect id="x5" ref="time">
+			&lt;!&ndash;匹配两个参数 参数名必须与withTagCount2的形参名一致&ndash;&gt;
+			<aop:pointcut id="p5"
+			              expression="@annotation(com.xubao.test.simpleTest.springTest.aopTest.Tag) and args(count,a)"/>
+			<aop:before method="withTagCount2" pointcut-ref="p5"/>
+		</aop:aspect>
+
+		<aop:aspect id="x6" ref="time">
+			&lt;!&ndash;匹配两个参数 参数名必须与withTagCount2的形参名一致
+				around method方法形参 ProceedingJoinPoint定义必须放在第一个 否则生成aspect报错
+			&ndash;&gt;
+			<aop:pointcut id="p6"
+			              expression="@annotation(com.xubao.test.simpleTest.springTest.aopTest.Tag) and args(count,a)"/>
+			<aop:around method="withTagAroundCount2" pointcut-ref="p6"/>
+		</aop:aspect>
+
+		&lt;!&ndash;<aop:aspect id="x7" ref="time">&ndash;&gt;
+			&lt;!&ndash;&lt;!&ndash;匹配两个参数 参数名必须与withTagCount2的形参名一致&ndash;&gt;
+				&lt;!&ndash;around method方法形参 ProceedingJoinPoint定义必须放在第一个 否则生成aspect报错&ndash;&gt;
+			&lt;!&ndash;&ndash;&gt;&ndash;&gt;
+			&lt;!&ndash;<aop:pointcut id="p7"&ndash;&gt;
+			              &lt;!&ndash;expression="@annotation(com.xubao.test.simpleTest.springTest.aopTest.Tag) and @args(com.xubao.test.simpleTest.springTest.aopTest.ForArgs)"/>&ndash;&gt;
+			&lt;!&ndash;<aop:around method="withTagAroundCount2" pointcut-ref="p7"/>&ndash;&gt;
+		&lt;!&ndash;</aop:aspect>&ndash;&gt;
+
+	</aop:config>-->
+
+	<!--...............................................-->
+
+	<bean id="f" class="com.xubao.test.simpleTest.springTest.aopTest.F" factory-method="instance"/>
+	<aop:config>
+		<aop:aspect ref="time">
+			<aop:pointcut id="y1" expression="execution(* com.xubao.test.simpleTest.springTest.aopTest.F.*())"/>
+			<aop:before method="printTime" pointcut-ref="y1"/>
 		</aop:aspect>
 	</aop:config>
-
 </beans>

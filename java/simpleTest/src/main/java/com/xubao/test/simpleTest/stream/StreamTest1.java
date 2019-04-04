@@ -14,13 +14,57 @@ import java.util.stream.Stream;
  */
 public class StreamTest1
 {
+	//collector 表示对流进行最终的处理
+	//
+
 	public static void main(String[] args)
 	{
 //		test1();
 //		test2();
 //		test3();
 //		test4();
-		test5();
+//		test5();
+//		test6();
+		test7();
+	}
+
+	private static void test7()
+	{
+		//分割为一个一个字符
+		String[] split = "1234567890".split("");
+		List<String> list = Arrays.asList(split);
+		Map<Integer, String> collect = list.stream().collect(Collectors.<String, Integer, String>toMap(key -> Integer.parseInt(key) + 1000, v -> v));
+		System.out.println(collect);
+
+		Map<String, String> collect1 = list.stream().collect(Collectors.toMap(key -> key + 1000, v -> v));
+		System.out.println(collect1);
+
+
+		//找最大
+		Optional<String> max = list.stream().max((a, b) -> Integer.parseInt(a) - Integer.parseInt(b));
+		System.out.println(max);
+
+		//不执行 peek
+		list.stream().limit(3).peek(o -> System.out.println("peek:" + o));
+
+		//执行 peek
+		Long count = list.stream().limit(3).peek(o -> System.out.println("peek:" + o)).collect(Collectors.counting());
+		System.out.println(count);
+
+		Stream.iterate("xx",o->"---"+o).peek(o -> System.out.println("peek:" + o)).count();
+	}
+
+	private static void test6()
+	{
+//		List<String> collect = Stream.of(Arrays.asList("123"),
+//				Arrays.asList("456"),
+//				Arrays.asList(1, 2)).flatMap((a) -> a.stream().map(o->o.toString())).collect(Collectors.toList());
+
+		List<String> collect = Stream.of(Arrays.asList("123"),
+				Arrays.asList("456"),
+				Arrays.asList(1, 2)).flatMap((a) -> Stream.<String>empty()).collect(Collectors.toList());
+
+		System.out.println(collect);
 	}
 
 	private static void test5()

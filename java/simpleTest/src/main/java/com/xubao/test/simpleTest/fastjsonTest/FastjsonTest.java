@@ -15,7 +15,11 @@ public class FastjsonTest
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("bytes", bytes);
 
-		String s = jsonObject.toJSONString();//bytes会转换为base64
+		String s = jsonObject.toJSONString();//toString时bytes会转换为base64
 		System.out.println(s);
+
+		//能转回来
+		byte[] b = jsonObject.getObject("bytes", byte[].class);
+		System.out.println(new String(b));
 	}
 }
