@@ -1,9 +1,6 @@
 package com.xubao.test.simpleTest.stream;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,10 +19,71 @@ public class StreamTest1
 //		test1();
 //		test2();
 //		test3();
-//		test4();
+		test4();
 //		test5();
 //		test6();
-		test7();
+//		test7();
+//		test8();
+//		test9();
+	}
+
+	private static void test9()
+	{
+		List<String> list = new ArrayList<>();
+		Random random = new Random(223);
+		int count = 100000;
+		for(int i = 0; i < count; i++)
+		{
+			list.add(random.nextInt() + "");
+		}
+
+		long start = System.nanoTime();
+		int z = 0;
+
+		int sleep = 0;
+
+		for(String s : list)
+		{
+			z += Integer.parseInt(s);
+			try
+			{
+				Thread.sleep(sleep);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		long end = System.nanoTime();
+		System.out.println("for   :" + (end - start));
+
+		start = System.nanoTime();
+		int q[] = new int[1];
+		list.stream()/*.map((s) -> s + "0")*//*.sorted(Comparator.comparingInt(Integer::parseInt))*/.forEach((x) ->
+		{
+			q[0] += Long.parseLong(x);
+			try
+			{
+				Thread.sleep(sleep);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		});
+		end = System.nanoTime();
+		System.out.println("stream:" + (end - start));
+
+	}
+
+	private static void test8()
+	{
+		List<String> list = Arrays.asList("1", "11", "3", "10", "12", "21", "22", "211", "1111");
+		List<String> collect = list.stream().limit(5).collect(Collectors.toList());
+		System.out.println(collect);
+
+		collect = list.stream().filter((x)->x.contains("3")).sorted(Comparator.comparingInt((x) -> -Integer.parseInt(x))).limit(5).collect(Collectors.toList());
+		System.out.println(collect);
 	}
 
 	private static void test7()
@@ -51,18 +109,18 @@ public class StreamTest1
 		Long count = list.stream().limit(3).peek(o -> System.out.println("peek:" + o)).collect(Collectors.counting());
 		System.out.println(count);
 
-		Stream.iterate("xx",o->"---"+o).peek(o -> System.out.println("peek:" + o)).count();
+		Stream.iterate("xx", o -> "---" + o).peek(o -> System.out.println("peek:" + o)).count();
 	}
 
 	private static void test6()
 	{
-//		List<String> collect = Stream.of(Arrays.asList("123"),
-//				Arrays.asList("456"),
-//				Arrays.asList(1, 2)).flatMap((a) -> a.stream().map(o->o.toString())).collect(Collectors.toList());
-
 		List<String> collect = Stream.of(Arrays.asList("123"),
 				Arrays.asList("456"),
-				Arrays.asList(1, 2)).flatMap((a) -> Stream.<String>empty()).collect(Collectors.toList());
+				Arrays.asList(1, 2)).flatMap((a) -> a.stream().map(o->o.toString())).collect(Collectors.toList());
+
+//		List<String> collect = Stream.of(Arrays.asList("123"),
+//				Arrays.asList("456"),
+//				Arrays.asList(1, 2)).flatMap((a) -> Stream.<String>empty()).collect(Collectors.toList());
 
 		System.out.println(collect);
 	}
@@ -80,8 +138,12 @@ public class StreamTest1
 
 	private static void test4()
 	{
-		List<String> strList = Arrays.asList("123", "1233", "12333", "123333", "1233333");
-		String res = strList.stream().reduce("ff", (a, b) -> a + "-" + b);
+//		List<String> strList = Arrays.asList("123", "1233", "12333", "123333", "1233333");
+//		String res = strList.stream().reduce("ff", (a, b) -> a + "-" + b);
+//		System.out.println(res);
+
+		List<String> strList = Arrays.asList("11");//Arrays.asList("123", "1233", "12333", "123333", "1233333");
+		String res = strList.stream().reduce(null, (a, b) -> a + "-" + b);
 		System.out.println(res);
 	}
 
