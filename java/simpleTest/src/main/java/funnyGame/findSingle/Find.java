@@ -1,9 +1,6 @@
 package funnyGame.findSingle;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author xubao
@@ -14,14 +11,18 @@ public class Find
 {
 	public static void main(String[] args)
 	{
-		List<Integer> list = create(20000, 3);
-		System.out.println(list);
+//		List<Integer> list = create(20000, 3);
+//		System.out.println(list);
+//
+//		int answer = findOne(list);
+//		System.out.println("answer:" + answer);
 
-		int answer = find(list);
-		System.out.println("answer:" + answer);
+
+		System.out.println("find two:" + Arrays.toString(findTwo(create(10, 0, 8545616))));
 	}
 
-	public static int find(List<Integer> list)
+	//n
+	public static int findOne(List<Integer> list)
 	{
 		int temp = 0;
 		for(Integer i : list)
@@ -31,10 +32,42 @@ public class Find
 		return temp;
 	}
 
-	public static List<Integer> create(int doubleNumb, int single)
+	//n^2
+	public static int[] findTwo(List<Integer> list)
+	{
+		int[] result = new int[2];
+		int resultCount = 0;
+		for(Integer m : list)
+		{
+			int count = 0;
+			for(Integer n : list)
+			{
+				if(m.equals(n))//Integer用equals 否则超出[-128,127] 不等
+				{
+					count++;
+				}
+			}
+
+			if(count == 1)
+			{
+				result[resultCount] = m;
+				resultCount++;
+				if(resultCount == 2)
+				{
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public static List<Integer> create(int doubleNumb, Integer... singles)
 	{
 		List<Integer> list = new ArrayList<>();
 		Random random = new Random();
+
+		List<Integer> singleList = Arrays.asList(singles);
 
 		for(int i = 0; i < doubleNumb; i++)
 		{
@@ -42,12 +75,12 @@ public class Find
 			do
 			{
 				nextInt = random.nextInt();
-			} while(nextInt == single);
+			} while(singleList.contains(nextInt));
 			list.add(nextInt);
 			list.add(nextInt);
 		}
 
-		list.add(single);
+		list.addAll(singleList);
 
 		Collections.shuffle(list);
 		return list;

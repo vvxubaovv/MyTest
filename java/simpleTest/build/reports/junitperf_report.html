@@ -1,0 +1,574 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <meta charset="utf-8">
+    <title>JUnit Performance Report</title>
+
+</head>
+<body style='font-family:Verdana;'>
+<center>
+    <h1 style='color:#044e9b'>JUnit Performance Report</h1>
+        <hr/>
+        <br/>
+        <table border='1' cellspacing='0' cellpadding='3px' style='border-color:#eee'>
+            <tr>
+                <th style='background-color:#ffffdd; color:#044e9b'>&nbsp;&nbsp;&nbsp;</th>
+                <th style='background-color:#ffffdd; color:#044e9b'>Tests</th>
+            <tr>
+
+             
+                <tr>
+                    <!-- Success: #2b67a4 failure: #d9534f -->
+                    <td style='background-color:#2b67a4;'>&nbsp;</td>
+                    <td><a href='#helloTest'>helloTest</td>
+                <tr>
+             
+        </table>
+        <br/>
+        <hr/>
+
+
+        
+        <a name='helloTest'><h2 style='color:#2b67a4'>helloTest</h2></a>
+        <table width='970'>
+            <tr>
+                <td>
+                    <!-- ADD scatter Chart here!! -->
+                    <script type="text/javascript">
+                        google.charts.load('current', {'packages':['corechart']});
+                        google.charts.setOnLoadCallback(drawChart);
+                        google.charts.setOnLoadCallback(setCsvExportLink);
+
+                        function drawChart() {
+
+                            var data = google.visualization.arrayToDataTable([
+                                ['Percentile', 'Latency', { role: "tooltip"} ],
+                                
+                                [ 1, 200.38008, "1% of executions ≤ 200.38ms"],
+                                
+                                [ 2, 200.38008, "2% of executions ≤ 200.38ms"],
+                                
+                                [ 3, 200.38008, "3% of executions ≤ 200.38ms"],
+                                
+                                [ 4, 200.38008, "4% of executions ≤ 200.38ms"],
+                                
+                                [ 5, 200.38629, "5% of executions ≤ 200.39ms"],
+                                
+                                [ 6, 200.4124, "6% of executions ≤ 200.41ms"],
+                                
+                                [ 7, 200.43849, "7% of executions ≤ 200.44ms"],
+                                
+                                [ 8, 200.4646, "8% of executions ≤ 200.46ms"],
+                                
+                                [ 9, 200.4907, "9% of executions ≤ 200.49ms"],
+                                
+                                [ 10, 200.50893, "10% of executions ≤ 200.51ms"],
+                                
+                                [ 11, 200.51848, "11% of executions ≤ 200.52ms"],
+                                
+                                [ 12, 200.52805, "12% of executions ≤ 200.53ms"],
+                                
+                                [ 13, 200.5376, "13% of executions ≤ 200.54ms"],
+                                
+                                [ 14, 200.54715, "14% of executions ≤ 200.55ms"],
+                                
+                                [ 15, 200.5507, "15% of executions ≤ 200.55ms"],
+                                
+                                [ 16, 200.55183, "16% of executions ≤ 200.55ms"],
+                                
+                                [ 17, 200.55296, "17% of executions ≤ 200.55ms"],
+                                
+                                [ 18, 200.5541, "18% of executions ≤ 200.55ms"],
+                                
+                                [ 19, 200.55524, "19% of executions ≤ 200.56ms"],
+                                
+                                [ 20, 200.5586, "20% of executions ≤ 200.56ms"],
+                                
+                                [ 21, 200.56206, "21% of executions ≤ 200.56ms"],
+                                
+                                [ 22, 200.56552, "22% of executions ≤ 200.57ms"],
+                                
+                                [ 23, 200.56898, "23% of executions ≤ 200.57ms"],
+                                
+                                [ 24, 200.57254, "24% of executions ≤ 200.57ms"],
+                                
+                                [ 25, 200.57648, "25% of executions ≤ 200.58ms"],
+                                
+                                [ 26, 200.58043, "26% of executions ≤ 200.58ms"],
+                                
+                                [ 27, 200.58437, "27% of executions ≤ 200.58ms"],
+                                
+                                [ 28, 200.5883, "28% of executions ≤ 200.59ms"],
+                                
+                                [ 29, 200.59119, "29% of executions ≤ 200.59ms"],
+                                
+                                [ 30, 200.5926, "30% of executions ≤ 200.59ms"],
+                                
+                                [ 31, 200.59406, "31% of executions ≤ 200.59ms"],
+                                
+                                [ 32, 200.59547, "32% of executions ≤ 200.60ms"],
+                                
+                                [ 33, 200.59691, "33% of executions ≤ 200.60ms"],
+                                
+                                [ 34, 200.59798, "34% of executions ≤ 200.60ms"],
+                                
+                                [ 35, 200.59888, "35% of executions ≤ 200.60ms"],
+                                
+                                [ 36, 200.59978, "36% of executions ≤ 200.60ms"],
+                                
+                                [ 37, 200.60068, "37% of executions ≤ 200.60ms"],
+                                
+                                [ 38, 200.60156, "38% of executions ≤ 200.60ms"],
+                                
+                                [ 39, 200.60426, "39% of executions ≤ 200.60ms"],
+                                
+                                [ 40, 200.60712, "40% of executions ≤ 200.61ms"],
+                                
+                                [ 41, 200.60999, "41% of executions ≤ 200.61ms"],
+                                
+                                [ 42, 200.61285, "42% of executions ≤ 200.61ms"],
+                                
+                                [ 43, 200.61531, "43% of executions ≤ 200.62ms"],
+                                
+                                [ 44, 200.61537, "44% of executions ≤ 200.62ms"],
+                                
+                                [ 45, 200.61543, "45% of executions ≤ 200.62ms"],
+                                
+                                [ 46, 200.61551, "46% of executions ≤ 200.62ms"],
+                                
+                                [ 47, 200.61555, "47% of executions ≤ 200.62ms"],
+                                
+                                [ 48, 200.61655, "48% of executions ≤ 200.62ms"],
+                                
+                                [ 49, 200.61905, "49% of executions ≤ 200.62ms"],
+                                
+                                [ 50, 200.62157, "50% of executions ≤ 200.62ms"],
+                                
+                                [ 51, 200.62408, "51% of executions ≤ 200.62ms"],
+                                
+                                [ 52, 200.62659, "52% of executions ≤ 200.63ms"],
+                                
+                                [ 53, 200.62761, "53% of executions ≤ 200.63ms"],
+                                
+                                [ 54, 200.62773, "54% of executions ≤ 200.63ms"],
+                                
+                                [ 55, 200.62785, "55% of executions ≤ 200.63ms"],
+                                
+                                [ 56, 200.62798, "56% of executions ≤ 200.63ms"],
+                                
+                                [ 57, 200.6281, "57% of executions ≤ 200.63ms"],
+                                
+                                [ 58, 200.62923, "58% of executions ≤ 200.63ms"],
+                                
+                                [ 59, 200.63054, "59% of executions ≤ 200.63ms"],
+                                
+                                [ 60, 200.63187, "60% of executions ≤ 200.63ms"],
+                                
+                                [ 61, 200.63318, "61% of executions ≤ 200.63ms"],
+                                
+                                [ 62, 200.63437, "62% of executions ≤ 200.63ms"],
+                                
+                                [ 63, 200.63443, "63% of executions ≤ 200.63ms"],
+                                
+                                [ 64, 200.63449, "64% of executions ≤ 200.63ms"],
+                                
+                                [ 65, 200.63454, "65% of executions ≤ 200.63ms"],
+                                
+                                [ 66, 200.63461, "66% of executions ≤ 200.63ms"],
+                                
+                                [ 67, 200.6349, "67% of executions ≤ 200.63ms"],
+                                
+                                [ 68, 200.6356, "68% of executions ≤ 200.64ms"],
+                                
+                                [ 69, 200.63632, "69% of executions ≤ 200.64ms"],
+                                
+                                [ 70, 200.63704, "70% of executions ≤ 200.64ms"],
+                                
+                                [ 71, 200.63776, "71% of executions ≤ 200.64ms"],
+                                
+                                [ 72, 200.63899, "72% of executions ≤ 200.64ms"],
+                                
+                                [ 73, 200.6406, "73% of executions ≤ 200.64ms"],
+                                
+                                [ 74, 200.64221, "74% of executions ≤ 200.64ms"],
+                                
+                                [ 75, 200.64383, "75% of executions ≤ 200.64ms"],
+                                
+                                [ 76, 200.64545, "76% of executions ≤ 200.65ms"],
+                                
+                                [ 77, 200.64821, "77% of executions ≤ 200.65ms"],
+                                
+                                [ 78, 200.65126, "78% of executions ≤ 200.65ms"],
+                                
+                                [ 79, 200.6543, "79% of executions ≤ 200.65ms"],
+                                
+                                [ 80, 200.65735, "80% of executions ≤ 200.66ms"],
+                                
+                                [ 81, 200.66031, "81% of executions ≤ 200.66ms"],
+                                
+                                [ 82, 200.66125, "82% of executions ≤ 200.66ms"],
+                                
+                                [ 83, 200.6622, "83% of executions ≤ 200.66ms"],
+                                
+                                [ 84, 200.66316, "84% of executions ≤ 200.66ms"],
+                                
+                                [ 85, 200.66412, "85% of executions ≤ 200.66ms"],
+                                
+                                [ 86, 200.6653, "86% of executions ≤ 200.67ms"],
+                                
+                                [ 87, 200.66702, "87% of executions ≤ 200.67ms"],
+                                
+                                [ 88, 200.66876, "88% of executions ≤ 200.67ms"],
+                                
+                                [ 89, 200.6705, "89% of executions ≤ 200.67ms"],
+                                
+                                [ 90, 200.67223, "90% of executions ≤ 200.67ms"],
+                                
+                                [ 91, 200.67464, "91% of executions ≤ 200.67ms"],
+                                
+                                [ 92, 200.67769, "92% of executions ≤ 200.68ms"],
+                                
+                                [ 93, 200.68074, "93% of executions ≤ 200.68ms"],
+                                
+                                [ 94, 200.68379, "94% of executions ≤ 200.68ms"],
+                                
+                                [ 95, 200.68683, "95% of executions ≤ 200.69ms"],
+                                
+                                [ 96, 200.68755, "96% of executions ≤ 200.69ms"],
+                                
+                                [ 97, 200.68755, "97% of executions ≤ 200.69ms"],
+                                
+                                [ 98, 200.68755, "98% of executions ≤ 200.69ms"],
+                                
+                                [ 99, 200.68755, "99% of executions ≤ 200.69ms"],
+                                
+                            ]);
+
+                            var options = {
+                                title: 'Latency percentile Distribution',
+                                hAxis: {
+                                    title: 'Percentile',
+                                    minValue: 0,
+                                    maxValue: 100,
+                                    viewWindow: {
+                                        min: 0,
+                                        max: 100
+                                    }
+                                },
+                                vAxis: {title: 'Latency', minValue: 0, maxValue: 15},
+                                legend: 'none',
+                                lineWidth: 1,
+                                pointSize: 7,
+                                dataOpacity: 0.5
+                            };
+
+                            var chart = new google.visualization.ScatterChart(document.getElementById('helloTest'));
+
+                            chart.draw(data, options);
+                        }
+
+                        function setCsvExportLink() {
+                            var csvData = google.visualization.arrayToDataTable([
+                                ['Percentile', 'Latency'],
+                                
+                                [ 1, 200.38008 ],
+                                
+                                [ 2, 200.38008 ],
+                                
+                                [ 3, 200.38008 ],
+                                
+                                [ 4, 200.38008 ],
+                                
+                                [ 5, 200.38629 ],
+                                
+                                [ 6, 200.4124 ],
+                                
+                                [ 7, 200.43849 ],
+                                
+                                [ 8, 200.4646 ],
+                                
+                                [ 9, 200.4907 ],
+                                
+                                [ 10, 200.50893 ],
+                                
+                                [ 11, 200.51848 ],
+                                
+                                [ 12, 200.52805 ],
+                                
+                                [ 13, 200.5376 ],
+                                
+                                [ 14, 200.54715 ],
+                                
+                                [ 15, 200.5507 ],
+                                
+                                [ 16, 200.55183 ],
+                                
+                                [ 17, 200.55296 ],
+                                
+                                [ 18, 200.5541 ],
+                                
+                                [ 19, 200.55524 ],
+                                
+                                [ 20, 200.5586 ],
+                                
+                                [ 21, 200.56206 ],
+                                
+                                [ 22, 200.56552 ],
+                                
+                                [ 23, 200.56898 ],
+                                
+                                [ 24, 200.57254 ],
+                                
+                                [ 25, 200.57648 ],
+                                
+                                [ 26, 200.58043 ],
+                                
+                                [ 27, 200.58437 ],
+                                
+                                [ 28, 200.5883 ],
+                                
+                                [ 29, 200.59119 ],
+                                
+                                [ 30, 200.5926 ],
+                                
+                                [ 31, 200.59406 ],
+                                
+                                [ 32, 200.59547 ],
+                                
+                                [ 33, 200.59691 ],
+                                
+                                [ 34, 200.59798 ],
+                                
+                                [ 35, 200.59888 ],
+                                
+                                [ 36, 200.59978 ],
+                                
+                                [ 37, 200.60068 ],
+                                
+                                [ 38, 200.60156 ],
+                                
+                                [ 39, 200.60426 ],
+                                
+                                [ 40, 200.60712 ],
+                                
+                                [ 41, 200.60999 ],
+                                
+                                [ 42, 200.61285 ],
+                                
+                                [ 43, 200.61531 ],
+                                
+                                [ 44, 200.61537 ],
+                                
+                                [ 45, 200.61543 ],
+                                
+                                [ 46, 200.61551 ],
+                                
+                                [ 47, 200.61555 ],
+                                
+                                [ 48, 200.61655 ],
+                                
+                                [ 49, 200.61905 ],
+                                
+                                [ 50, 200.62157 ],
+                                
+                                [ 51, 200.62408 ],
+                                
+                                [ 52, 200.62659 ],
+                                
+                                [ 53, 200.62761 ],
+                                
+                                [ 54, 200.62773 ],
+                                
+                                [ 55, 200.62785 ],
+                                
+                                [ 56, 200.62798 ],
+                                
+                                [ 57, 200.6281 ],
+                                
+                                [ 58, 200.62923 ],
+                                
+                                [ 59, 200.63054 ],
+                                
+                                [ 60, 200.63187 ],
+                                
+                                [ 61, 200.63318 ],
+                                
+                                [ 62, 200.63437 ],
+                                
+                                [ 63, 200.63443 ],
+                                
+                                [ 64, 200.63449 ],
+                                
+                                [ 65, 200.63454 ],
+                                
+                                [ 66, 200.63461 ],
+                                
+                                [ 67, 200.6349 ],
+                                
+                                [ 68, 200.6356 ],
+                                
+                                [ 69, 200.63632 ],
+                                
+                                [ 70, 200.63704 ],
+                                
+                                [ 71, 200.63776 ],
+                                
+                                [ 72, 200.63899 ],
+                                
+                                [ 73, 200.6406 ],
+                                
+                                [ 74, 200.64221 ],
+                                
+                                [ 75, 200.64383 ],
+                                
+                                [ 76, 200.64545 ],
+                                
+                                [ 77, 200.64821 ],
+                                
+                                [ 78, 200.65126 ],
+                                
+                                [ 79, 200.6543 ],
+                                
+                                [ 80, 200.65735 ],
+                                
+                                [ 81, 200.66031 ],
+                                
+                                [ 82, 200.66125 ],
+                                
+                                [ 83, 200.6622 ],
+                                
+                                [ 84, 200.66316 ],
+                                
+                                [ 85, 200.66412 ],
+                                
+                                [ 86, 200.6653 ],
+                                
+                                [ 87, 200.66702 ],
+                                
+                                [ 88, 200.66876 ],
+                                
+                                [ 89, 200.6705 ],
+                                
+                                [ 90, 200.67223 ],
+                                
+                                [ 91, 200.67464 ],
+                                
+                                [ 92, 200.67769 ],
+                                
+                                [ 93, 200.68074 ],
+                                
+                                [ 94, 200.68379 ],
+                                
+                                [ 95, 200.68683 ],
+                                
+                                [ 96, 200.68755 ],
+                                
+                                [ 97, 200.68755 ],
+                                
+                                [ 98, 200.68755 ],
+                                
+                                [ 99, 200.68755 ],
+                                
+                                [ 100, 200.68755 ],
+                                
+                            ]);
+                            var csvFormattedDataTable = google.visualization.dataTableToCsv(csvData);
+                            var encodedUri = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csvFormattedDataTable);
+                            var link = document.getElementById('Export-helloTest')
+                            link.href=encodedUri;
+                            link.download = 'helloTest.csv';
+                            link.target = '_blank';
+                        }
+
+                    </script>
+                    <div id="helloTest" style="width: 600px; height: 400px;"></div>
+                    <a id="Export-helloTest" href="#" style="margin-left: 230px;">Download as csv</a>
+                </td>
+                <td>
+                    <table style='font-family:sans-serif;'>
+                        <tr><th>Started at:</th><td colspan='2'><b>2019-08-16 10:18:40</b></td></tr>
+                        <tr>
+                            <th align='right' valign='top'>Invocations:</th>
+                            <td align='right'>20</td>
+                            <td align='right'></td>
+                        </tr>
+                        <tr>
+                            <th align='right' valign='top'>- Success:</th>
+                            <td align='right'>20</td>
+                            <td align='right'></td>
+                        </tr>
+                        <tr>
+                            
+                            <th align='right' valign='top'><b style='color:#2b67a4'>- Errors:</b></th>
+                            <td align='right'><b style='color:#2b67a4'>0</b></td>
+                            <td align='right'><b style='color:#2b67a4;'>0.00%</b></td>
+                        </tr>
+                        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                        <tr>
+                            <th align='right' valign='top'>Thread Count:</th>
+                            <td align='right'>1</td>
+                            <td align='right'></td>
+                        </tr>
+                        <tr>
+                            <th align='right' valign='top'>Warm up:</th>
+                            <td align='right'>0 ms</td>
+                            <td align='right'></td>
+                        </tr>
+                        <tr>
+                            <th align='right' valign='top'>Ramp up:</th>
+                            <td align='right'>0 ms</td>
+                            <td align='right'></td>
+                        </tr>
+                        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                        <tr valign='top'>
+                            <th>&nbsp;</th>
+                            <th>Measured<br/>(system)</th>
+                            <th>Required</th>
+                        </tr>
+                        <tr>
+                            <th align='right' valign='top'>Execution time:</th>
+                            <td align='right'>10,000 ms</td>
+                            <td align='right'></td>
+                        </tr>
+                        <tr>
+                            
+                            <th align='right' valign='top'><b style='color:#2b67a4'>Throughput:</b></th>
+                            <td align='right'><b style='color:#2b67a4;'>2 / s</b></td>
+                            <td align='right'><b style='color:#2b67a4;'>0 / s</b></td>
+                        </tr>
+                        <tr>
+                            
+                            <th align='right' valign='top'><b style='color:#2b67a4'>Min latency:</b></th>
+                            <td align='right'><b style='color:#2b67a4'>200.38 ms</b></td>
+                            
+                            <td align='right'><b style='color:#2b67a4'>N/A ms</b></td>
+                        </tr>
+                        <tr>
+                            
+                            <th align='right' valign='top'><b style='color:#2b67a4'>Average latency:</b></th>
+                            <td align='right'><b style='color:#2b67a4'>200.60 ms</b></td>
+                            
+                            <td align='right'><b style='color:#2b67a4'>N/A ms</b></td>
+                        </tr>
+
+                        
+                        <tr>
+                            
+                            <th align='right' valign='top'><b style='color:#2b67a4'>Max latency:</b></th>
+                            <td align='right'><b style='color:#2b67a4'>200.69 ms</b></td>
+                            
+                            <td align='right'><b style='color:#2b67a4'>N/A ms</b></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <br/><br/><br/>
+        
+        <hr/>
+        <div style='color:#044e9b;'>Report created by <a href='https://github.com/noconnor/JUnitPerf'>JunitPerf</a> </div>
+</center>
+</body>
+</html>

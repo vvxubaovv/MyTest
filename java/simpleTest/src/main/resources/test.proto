@@ -1,4 +1,5 @@
-option java_package="com.liulei.cinema";
+syntax = "proto2";
+option java_package="test";
 
  enum MovieType{
            CHILDREN=1;

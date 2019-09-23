@@ -1,0 +1,40 @@
+syntax = "proto2";
+option java_package="com.xubao.test.simpleTest.protobufTest";
+option java_outer_classname = "ForExtendTest";
+
+message A
+{
+    optional int32 id = 1;
+    map<int32,int32> info = 2;
+    extensions 20 to 30;
+}
+
+message B
+{
+    required int32 b = 1;
+    extend A{
+        optional B b1 = 20;//不能与原有位置一样  and Message extensions cannot have required fields.
+    }
+}
+
+message C
+{
+    required int32 c = 1;
+    extend A{
+        optional C c1 = 21;//不能与原有位置一样  and Message extensions cannot have required fields.
+    }
+}
+
+message D
+{
+    optional int32 d = 1;
+    extensions 10 to 20;
+}
+
+message E
+{
+    required int32 e = 1;
+    extend D{
+        optional E e1 = 11;
+    }
+}

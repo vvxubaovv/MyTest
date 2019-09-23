@@ -28,7 +28,7 @@
 ///*
 // * This sample demonstrates simple preprocessor in BTrace.
 // * When you run this sample against a Java process, you have
-// * to specify -I . option so that the preprocessor can find
+// * to specify -I . option so that the preprocessor can findOne
 // * the "btracedefs.h" file:
 // *
 // *    btrace -I . <pid> ThreadBean.java
